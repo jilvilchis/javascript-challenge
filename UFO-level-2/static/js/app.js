@@ -17,6 +17,24 @@ function buildTable(data){
 
 buildTable(tableData);
 
+//create a new function inputFiltered
+// the objecte we create new object filtered
+// grap the value from all inouts
+var  filteredObject = {}
+
+funtion inputFilter (){
+var listItem = d3.select(this).select("input");
+var listValue =  listItem.property("value");
+  var id = listItem.attr("id"); // grab the id for everyelement
+
+  listItem.text("This text is overrided");
+if (listValue){
+    filteredObject[id] = listValue;
+}else{
+    delete filteredObject[id]; // delete just blank filters
+}
+}
+
 var button = d3.select('#filter-btn');
 
 button.on("click", function(){
@@ -29,18 +47,12 @@ button.on("click", function(){
     console.log(inputValue);
     console.log(tableData);
 
-    var filteredData = tableData.filter(ufoEvent => ufoEvent.datetime === inputValue);
-    console.log(filteredData);
-    buildTable(filteredData);
+    // var filteredData = tableData.filter(ufoEvent => ufoEvent.datetime === inputValue);
+    // console.log(filteredData);
+    // buildTable(filteredData);
+
+    Object.entries(filteredObject).forEach(([key.value])=>{
+        filteredData = tableData.filter(row => row[key]=== value);
+    })
 
 })
-
-// const output_Date = document.querySelector('')
-
-
-// const myForm = document.querySelector('filter-btn')
-// myForm
-
-
-
-
